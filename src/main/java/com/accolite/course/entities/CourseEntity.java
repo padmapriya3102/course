@@ -1,79 +1,113 @@
 package com.accolite.course.entities;
 
+import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- 
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 @Entity
 public class CourseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String type;
-    private String title;
-    private int number;
-    private int numCredits;
-   
-    public CourseEntity() {
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String description;
+	private String prerequesite;
+	private String feedback;
+	private String location;
+    private String lastupdated;
  
-  
-    public Long getId() {
-		return id;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Skill> skill;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Creator> creator;
+	
+	public CourseEntity() {
 	}
 
+	public Long getId() {
+		return id;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	
 
-	public String getType() {
-		return type;
+	public String getDescription() {
+		return description;
 	}
 
-
-	public void setType(String type) {
-		this.type = type;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-
-	public String getTitle() {
-		return title;
+	public String getPrerequesite() {
+		return prerequesite;
 	}
 
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setPrerequesite(String prerequesite) {
+		this.prerequesite = prerequesite;
 	}
 
+	
 
-	public int getNumber() {
-		return number;
+	
+
+	public String getLastupdated() {
+		return lastupdated;
 	}
 
-
-	public void setNumber(int number) {
-		this.number = number;
+	public void setLastupdated(String lastupdated) {
+		this.lastupdated = lastupdated;
 	}
 
-
-	public int getNumCredits() {
-		return numCredits;
+	public String getFeedback() {
+		return feedback;
 	}
 
-
-	public void setNumCredits(int numCredits) {
-		this.numCredits = numCredits;
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
 	}
 
+	public List<Skill> getSkill() {
+		return skill;
+	}
+
+	public void setSkill(List<Skill> skill) {
+		this.skill = skill;
+	}
+
+	
+
+	public List<Creator> getCreator() {
+		return creator;
+	}
+
+	public void setCreator(List<Creator> creator) {
+		this.creator = creator;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	@Override
 	public String toString() {
-		return "CourseEntity [id=" + id + ", type=" + type + ", title=" + title + ", number=" + number + ", numCredits="
-				+ numCredits + "]";
-	}  
-}
+		return "CourseEntity [id=" + id + ", desc=" + description + ", prerequesite=" + prerequesite + ", lastUpdated="
+				+ lastupdated + ", feedback=" + feedback + ", skills=" + skill + ", creator=" + creator + ", location="
+				+ location + "]";
+	}
 
+}
